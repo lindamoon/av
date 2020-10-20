@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -155,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
 
     private void doSwitchCamera() {
+        if (mRecording) {
+            Toast.makeText(this, "录制中请先停止录像", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //关闭之前的camera
         if (null != mCamera) {
             mCamera.stopPreview();
