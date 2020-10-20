@@ -1,0 +1,45 @@
+ext {
+    //base config
+    testMode = false
+    applicationId = testMode ? "com.lixb.av.test" : "com.lixb.av" //app id
+    applicationName = testMode ? "av" : "av" //app 名称
+    mapKey = "" //高德key
+    baiduMapKey ="" //百度key
+
+    todayBuildTimes = 1  //0 表示今天第0次打包
+
+    //android
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+
+    //defaultConfig
+    minSdkVersion = 19
+    targetSdkVersion = 28
+    versionCode = releaseTimeForCode(todayBuildTimes)
+//    versionNamePrefix = "iVS-100_VoChat V"
+//    versionNamePrefix = "V"
+    versionName = "1.1.4.".concat("_").concat(getVCStag()).concat("_").concat(releaseTimeForName())
+//    versionName = versionNamePrefix.concat(getSVNVersion()).concat('_').concat(releaseTimeForName())
+    println "SVN version:"+getVCStag()
+    println "versionCode:"+versionCode
+    println "versionName:"+versionName
+    //支持的架构类型
+    abiFilters = '"armeabi-v7a"' //,"armeabi"'// , x86, arm64-v8a , x86_64'
+
+    //v7 v4 依赖包版本
+    supportLibrary = "28+"
+
+    //其他依赖库本部
+}
+
+def static releaseTimeForName() {
+    return new Date().format("yyyyMMdd")
+}
+
+def static releaseTimeForCode(int times) {
+    return new Date().format("yyMMdd").concat(String.valueOf(times)).toInteger()
+}
+
+def getVCStag() {
+    return "0";
+}
